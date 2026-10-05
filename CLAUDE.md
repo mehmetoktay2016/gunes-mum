@@ -30,7 +30,8 @@ Sıcak, samimi ve sakin. Abartılı satış dili kullanılmasın.
   Tükenen üründe StockAlertDialog ("Gelince haber ver") açılır; açık olduğu ürün App'te `stokUrunu` state'inde.
   Başlıkta yalnızca "Giriş yap" butonu var; üye olma penceresi giriş penceresindeki "Üye olun" bağlantısıyla açılır
   (kullanıcı tercihi: başlıkta ayrı "Üye ol" butonu olmasın).
-- Atölye bilgileri `src/atolye.js` içinde: `siteAdresi`, `iletisim` (adres, telefon, e-posta, Instagram, çalışma saatleri)
+- Atölye bilgileri `src/atolye.js` içinde: `siteAdresi`, `sosyalMedya` (alt bilgideki SocialLinks simgeleri;
+  Simple Icons paketinden Facebook, Instagram, X, TikTok; hesap adları uydurma), `iletisim` (adres, telefon, e-posta, Instagram, çalışma saatleri)
   ve `demoUye`. Bu değerler uydurmadır; e-postalar `example.com` kullanır.
 - Üyelik DEMO (sunucu yok), mantığı `src/uyelik.js` içinde:
   - Kayıtlı üyeler localStorage `gunes-mum-uyeler` dizisinde: `{ ad, eposta, tuz, sifreOzeti }`.

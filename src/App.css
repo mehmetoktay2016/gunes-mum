@@ -597,10 +597,53 @@ footer {
   border-top: 1px solid var(--fitil);
 }
 
+footer p {
+  margin: 8px 0 0;
+}
+
+/* Sosyal medya simgeleri */
+
+.sosyal {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sosyal a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  color: var(--kul);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.sosyal a:hover {
+  color: var(--alev);
+  background: rgba(242, 165, 65, 0.12);
+}
+
+.sosyal a:focus-visible {
+  outline: 2px solid var(--balmumu);
+  outline-offset: 2px;
+}
+
+.sosyal svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sepet-buton,
   .ikincil-buton,
-  .adet-secici button {
+  .adet-secici button,
+  .sosyal a {
     transition: none;
   }
 }

@@ -16,6 +16,15 @@ export const iletisim = {
   ],
 }
 
+// Sosyal medya hesapları (alt bilgideki simgeler). Hesap adları uydurmadır; gerçek hesaplarla değiştirin.
+// `platform` değeri SocialLinks bileşenindeki simge eşleşmesiyle aynı olmalı.
+export const sosyalMedya = [
+  { platform: 'facebook', ad: 'Facebook', adres: 'https://www.facebook.com/gunesmum.atolye' },
+  { platform: 'instagram', ad: 'Instagram', adres: 'https://www.instagram.com/gunesmum.atolye' },
+  { platform: 'x', ad: 'X', adres: 'https://x.com/gunesmumatolye' },
+  { platform: 'tiktok', ad: 'TikTok', adres: 'https://www.tiktok.com/@gunesmum.atolye' },
+]
+
 // Demo üye hesabı. Gerçek bir giriş sistemi yok; bilgiler tarayıcıda kontrol edilir.
 export const demoUye = {
   ad: 'Derya Aksoy',

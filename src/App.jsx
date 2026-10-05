@@ -5,9 +5,10 @@ import LoginDialog from './components/LoginDialog.jsx'
 import OrderForm from './components/OrderForm.jsx'
 import ProductList from './components/ProductList.jsx'
 import RegisterDialog from './components/RegisterDialog.jsx'
+import SocialLinks from './components/SocialLinks.jsx'
 import StockAlertDialog from './components/StockAlertDialog.jsx'
 import UserMenu from './components/UserMenu.jsx'
-import { demoUye, iletisim, siteAdresi } from './atolye.js'
+import { demoUye, iletisim, siteAdresi, sosyalMedya } from './atolye.js'
 import urunler from './urunler.js'
 
 // Satıştaki (stokta olan) ürünler: sepete eklenebilir ve sipariş verilebilir.
@@ -108,7 +109,10 @@ function App() {
         <ContactInfo iletisim={iletisim} siteAdresi={siteAdresi} />
       </main>
 
-      <footer>© 2026 Güneş Mum Atölyesi</footer>
+      <footer>
+        <SocialLinks hesaplar={sosyalMedya} />
+        <p>© 2026 Güneş Mum Atölyesi</p>
+      </footer>
 
       <LoginDialog
         acik={pencere === 'giris'}
