@@ -23,11 +23,12 @@ Sıcak, samimi ve sakin. Abartılı satış dili kullanılmasın.
   ProductImage içinde `BASE_URL`'e göre çözülür.
 - Ürünler `src/urunler.js` içinde tutulur (alanlar: id, ad, aciklama, fiyat, stok, gorsel; `stok: 0` = tükendi, şu an Güneş Hediye Seti). Kullanıcı izni olmadan bu veriyi değiştirme.
 - Bileşenler `src/components/` içinde: ProductList (katalog) → ProductCard (kart) → ProductImage (görsel; görsel yoksa 🕯️ gösterir).
-  Başlıkta UserMenu (üye alanı) ve CartSummary (sepet özeti) var. Katalogdan sonra OrderForm ("Sipariş verin") ve ContactInfo (iletişim) gelir;
+  Başlıkta UserMenu (üye alanı) ve CartSummary (sepet özeti) var. Katalogdan sonra ContactInfo (iletişim) gelir;
   içinde CatalogQR (`qrcode.react`, `atolye.js` içindeki `siteAdresi`'ni açan QR kod) var.
   LoginDialog (giriş) ve RegisterDialog (üye ol) ortak Modal kabuğunu (native `<dialog>`) kullanır.
   Hangi pencerenin açık olduğu App'te `pencere` state'inde: null | 'giris' | 'kayit'.
   Tükenen üründe StockAlertDialog ("Gelince haber ver") açılır; açık olduğu ürün App'te `stokUrunu` state'inde.
+  OrderForm ("Sipariş verin") 2026-10-05'te yayından kaldırıldı: dosyası duruyor ama App'te kullanılmıyor.
   Başlıkta yalnızca "Giriş yap" butonu var; üye olma penceresi giriş penceresindeki "Üye olun" bağlantısıyla açılır
   (kullanıcı tercihi: başlıkta ayrı "Üye ol" butonu olmasın).
 - Atölye bilgileri `src/atolye.js` içinde: `siteAdresi`, `sosyalMedya` (alt bilgideki SocialLinks simgeleri;

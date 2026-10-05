@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import CartSummary from './components/CartSummary.jsx'
 import ContactInfo from './components/ContactInfo.jsx'
 import LoginDialog from './components/LoginDialog.jsx'
-import OrderForm from './components/OrderForm.jsx'
 import ProductList from './components/ProductList.jsx'
 import RegisterDialog from './components/RegisterDialog.jsx'
 import SocialLinks from './components/SocialLinks.jsx'
@@ -11,7 +10,7 @@ import UserMenu from './components/UserMenu.jsx'
 import { demoUye, iletisim, siteAdresi, sosyalMedya } from './atolye.js'
 import urunler from './urunler.js'
 
-// Satıştaki (stokta olan) ürünler: sepete eklenebilir ve sipariş verilebilir.
+// Satıştaki (stokta olan) ürünler: sepete eklenebilir.
 const satistakiUrunler = urunler.filter((urun) => urun.stok > 0)
 
 const SEPET_ANAHTARI = 'gunes-mum-sepet'
@@ -100,11 +99,6 @@ function App() {
           onEkle={sepeteEkle}
           onAzalt={sepettenAzalt}
           onStokBildirimi={setStokUrunu}
-        />
-        <OrderForm
-          urunler={satistakiUrunler}
-          atolyeTelefonu={iletisim.telefon}
-          varsayilanAd={uye?.ad}
         />
         <ContactInfo iletisim={iletisim} siteAdresi={siteAdresi} />
       </main>
