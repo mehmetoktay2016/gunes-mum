@@ -37,7 +37,7 @@ function LoginDialog({ acik, demoUye, onGiris, onKapat, onKayitAc }) {
 
   return (
     <Modal acik={acik} onKapat={onKapat} baslikId="giris-baslik">
-      <form onSubmit={gonder} noValidate>
+      <form className="form" onSubmit={gonder} noValidate>
         <h2 id="giris-baslik">Üye girişi</h2>
 
         <label htmlFor="giris-eposta">E-posta</label>

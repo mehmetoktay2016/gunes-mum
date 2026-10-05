@@ -5,6 +5,7 @@ const urunler = [
     ad: 'Lavanta Kavanoz Mum',
     aciklama: 'Soya mumu ve lavanta yağıyla hazırlanır. Yaklaşık 40 saat boyunca sakin ve dinlendirici bir koku yayar.',
     fiyat: 249,
+    stok: 12,
     gorsel: '/gorseller/lavanta.png',
   },
   {
@@ -12,6 +13,7 @@ const urunler = [
     ad: 'Bal Peteği Arı Mumu',
     aciklama: '%100 doğal arı mumundan, petek desenli dekoratif bir mum. Yanarken hafif bir bal kokusu bırakır.',
     fiyat: 179,
+    stok: 8,
     gorsel: '/gorseller/bal-petegi.png',
   },
   {
@@ -19,6 +21,7 @@ const urunler = [
     ad: 'Güneş Hediye Seti',
     aciklama: 'Üç küçük kokulu mum (vanilya, portakal, sandal ağacı) ve bir kibrit kutusu, hediyelik bir kutuda.',
     fiyat: 399,
+    stok: 0, // tükendi
     gorsel: '/gorseller/hediye-seti.png',
   },
 ]

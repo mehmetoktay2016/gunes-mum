@@ -5,6 +5,7 @@ dist/
 # Ortam değişkenleri (ör. VITE_WEBHOOK_URL)
 .env
 .env.*
+!.env.example
 
 # Kişisel Claude Code ayarları
 .claude/settings.local.json

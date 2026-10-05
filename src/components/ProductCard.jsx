@@ -2,11 +2,15 @@ import ProductImage from './ProductImage.jsx'
 
 // Tek bir ürünün kartı: kemerli görsel, ad, açıklama, fiyat ve sepet kontrolü.
 // Sepet bilgisi App'te tutulur; kart sadece adedi gösterir ve değişikliği bildirir.
-function ProductCard({ urun, adet, onEkle, onAzalt }) {
+// Stokta olmayan ürün "Tükendi" rozeti ve "Gelince haber ver" butonu gösterir.
+function ProductCard({ urun, adet, onEkle, onAzalt, onStokBildirimi }) {
+  const tukendi = urun.stok === 0
+
   return (
-    <article className="urun">
+    <article className={tukendi ? 'urun urun--tukendi' : 'urun'}>
       <div className="urun-cerceve">
         <ProductImage src={urun.gorsel} alt={urun.ad} />
+        {tukendi && <span className="urun-rozet">Tükendi</span>}
       </div>
 
       <h2 className="urun-ad">{urun.ad}</h2>
@@ -18,7 +22,11 @@ function ProductCard({ urun, adet, onEkle, onAzalt }) {
           <span className="fiyat-birim"> TL</span>
         </p>
 
-        {adet === 0 ? (
+        {tukendi ? (
+          <button type="button" className="ikincil-buton" onClick={onStokBildirimi}>
+            Gelince haber ver
+          </button>
+        ) : adet === 0 ? (
           <button type="button" className="sepet-buton" onClick={onEkle}>
             Sepete ekle
           </button>

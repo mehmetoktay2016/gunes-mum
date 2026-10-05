@@ -1,7 +1,7 @@
 import ProductCard from './ProductCard.jsx'
 
 // Katalog: ürün listesini alır, her ürün için bir ProductCard çizer.
-function ProductList({ urunler, sepet, onEkle, onAzalt }) {
+function ProductList({ urunler, sepet, onEkle, onAzalt, onStokBildirimi }) {
   if (urunler.length === 0) {
     return <p className="bos-katalog">Şu an katalogda ürün bulunmuyor.</p>
   }
@@ -15,6 +15,7 @@ function ProductList({ urunler, sepet, onEkle, onAzalt }) {
           adet={sepet[urun.id] ?? 0}
           onEkle={() => onEkle(urun.id)}
           onAzalt={() => onAzalt(urun.id)}
+          onStokBildirimi={() => onStokBildirimi(urun)}
         />
       ))}
     </section>

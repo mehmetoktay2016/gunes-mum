@@ -56,7 +56,7 @@ function RegisterDialog({ acik, onKayit, onKapat, onGirisAc }) {
 
   return (
     <Modal acik={acik} onKapat={onKapat} baslikId="kayit-baslik">
-      <form onSubmit={gonder} noValidate>
+      <form className="form" onSubmit={gonder} noValidate>
         <h2 id="kayit-baslik">Üye ol</h2>
 
         <label htmlFor="kayit-ad">Ad soyad</label>

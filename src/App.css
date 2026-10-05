@@ -303,13 +303,15 @@ main {
 
 /* İletişim */
 
-.iletisim {
+.iletisim,
+.siparis {
   margin-top: 96px;
   padding-top: 56px;
   border-top: 1px solid var(--fitil);
 }
 
-.iletisim-baslik {
+.iletisim-baslik,
+.bolum-baslik {
   margin: 0 0 32px;
   font-family: var(--font-baslik);
   font-weight: 400;
@@ -372,6 +374,73 @@ main {
   margin: 0;
 }
 
+/* Tükenen ürün */
+
+.urun-rozet {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--gece);
+  color: var(--balmumu);
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--fitil);
+}
+
+.urun--tukendi .urun-gorsel {
+  filter: saturate(0.55) brightness(0.75);
+}
+
+.urun--tukendi .fiyat {
+  color: var(--kul);
+}
+
+/* Sipariş bölümü */
+
+.siparis-form,
+.siparis-onay {
+  max-width: 480px;
+}
+
+.siparis-aciklama {
+  margin: 0 0 24px;
+  color: var(--kul);
+}
+
+.siparis-form .giris-butonlar {
+  justify-content: flex-start;
+}
+
+.siparis-onay {
+  padding: 28px;
+  border: 1px solid var(--fitil);
+  border-radius: 20px;
+  box-shadow: 0 0 60px -20px rgba(242, 165, 65, 0.3);
+}
+
+.siparis-onay h3 {
+  margin: 0 0 12px;
+  font-family: var(--font-baslik);
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--alev);
+}
+
+.siparis-onay p {
+  margin: 0 0 12px;
+}
+
+.siparis-no {
+  color: var(--kul);
+  font-size: 0.95rem;
+}
+
+.siparis-onay .ikincil-buton {
+  margin-top: 12px;
+}
+
 /* Katalog QR kodu: okunabilirlik için açık zemin üzerinde koyu kod */
 
 .katalog-qr {
@@ -422,7 +491,7 @@ main {
   background: rgba(15, 10, 8, 0.75);
 }
 
-.giris-pencere form {
+.form {
   display: flex;
   flex-direction: column;
 }
@@ -435,13 +504,14 @@ main {
   color: var(--alev);
 }
 
-.giris-pencere label {
+.form label {
   margin-bottom: 6px;
   font-size: 0.9rem;
   color: var(--kul);
 }
 
-.giris-pencere input {
+.form input,
+.form select {
   margin-bottom: 18px;
   padding: 12px 14px;
   border: 1px solid var(--fitil);
@@ -451,10 +521,23 @@ main {
   font: inherit;
 }
 
-.giris-pencere input:focus-visible {
+.form input:focus-visible,
+.form select:focus-visible {
   outline: 2px solid var(--alev);
   outline-offset: 1px;
   border-color: transparent;
+}
+
+/* Açılır menü oku (ortak arka plan kuralından sonra gelmeli) */
+.form select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--kul) 50%),
+    linear-gradient(135deg, var(--kul) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+  cursor: pointer;
 }
 
 .giris-hata {
@@ -475,7 +558,7 @@ main {
   gap: 12px;
 }
 
-.giris-pencere .sepet-buton:disabled {
+.form .sepet-buton:disabled {
   opacity: 0.6;
   cursor: wait;
 }

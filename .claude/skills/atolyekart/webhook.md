@@ -26,7 +26,7 @@ AtölyeKart'ta bir olay olduğunda (ör. üye kaydı ya da sepet değişikliği)
 
 **Alan adları** Türkçe camelCase ve yalnızca ASCII harflerle yazılır: `surum`, `araToplam`, `paraBirimi`. Türkçe karakter kullanılmaz (`sürüm` değil). Tutarlar TL cinsinden sayı olarak yazılır ve yanlarına `"paraBirimi": "TRY"` eklenir.
 
-**Gizlilik:** Üye bilgisinden yalnızca `ad` ve `eposta` gönderilir. Şifre, `sifreOzeti` ve `tuz` hiçbir olayın içinde yer almaz.
+**Gizlilik:** Kişisel veriden yalnızca olayın işi için gereken alanlar gönderilir: kimlik için `ad` ve `eposta`, siparişte geri arama için `telefon`. Şifre, `sifreOzeti` ve `tuz` hiçbir olayın içinde yer almaz.
 
 ## Olaylar
 
@@ -55,38 +55,42 @@ Sepetin değişiklikten sonraki tam hâli gönderilir. Sadece değişen kısım 
 ```
 Üye giriş yapmamışsa `uyeEposta` değeri `null` olur.
 
-### `siparis.olusturuldu` (ödeme adımı eklendiğinde)
-`sepet.guncellendi` ile aynı alanlara ek olarak `"siparisNo": "GM-20261005-0001"` alanı bulunur.
+### `siparis.olusturuldu`
+"Sipariş verin" formundan gönderilir (`src/siparis.js` → `siparisGonder`).
+```json
+{
+  "siparisNo": "GM-20261005-0427",
+  "ad": "Ali Veli",
+  "telefon": "05551234567",
+  "urunler": [
+    { "id": 1, "ad": "Lavanta Kavanoz Mum", "adet": 1, "birimFiyat": 249, "araToplam": 249 }
+  ],
+  "toplamAdet": 1,
+  "toplamTutar": 249,
+  "paraBirimi": "TRY"
+}
+```
+`telefon` boşluk, tire ve parantez atılmış hâliyle gönderilir. `urunler` dizisi ileride sepetten sipariş için birden fazla ürün taşıyabilir.
+
+### `stok.bildirim_istendi`
+Tükenen üründe "Gelince haber ver" penceresinden gönderilir (`stokBildirimiGonder`).
+```json
+{
+  "ad": "Ali Veli",
+  "eposta": "ali.veli@example.com",
+  "urun": { "id": 3, "ad": "Güneş Hediye Seti" }
+}
+```
 
 Yeni bir olay eklenirse önce bu listeye eklenir, sonra kodda kullanılır.
 
 ## Gönderim
 
-- Gönderim için `src/webhook.js` içindeki `webhookGonder(olay, veri)` kullanılır. Dosya yoksa önce aşağıdaki biçimde oluşturulur.
-- Adres `.env` dosyasındaki `VITE_WEBHOOK_URL` değişkeninden okunur. Bu değişken tanımlı değilse gönderim yapılmaz ve uygulama normal şekilde çalışmaya devam eder.
-- Gönderim, kullanıcının işlemini beklemez ve bozmaz. Hata olursa yalnızca `console.warn` ile kayda geçer.
+Gönderim kodu `src/webhook.js` dosyasındadır. Zarfı o dosya oluşturur; olay gönderen kod yalnızca `olay` ve `veri` verir.
 
-```js
-// Olayları standart zarf içinde webhook adresine gönderir (.claude/skills/atolyekart/webhook.md).
-const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_URL
-
-export function webhookGonder(olay, veri) {
-  if (!WEBHOOK_URL) return
-  const zarf = {
-    surum: 1,
-    olay,
-    id: crypto.randomUUID(),
-    zaman: new Date().toISOString(),
-    kaynak: 'gunes-mum',
-    veri,
-  }
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(zarf),
-    keepalive: true,
-  }).catch((hata) => console.warn('Webhook gönderilemedi:', olay, hata))
-}
-```
+- **Formlar** (sipariş, stok bildirimi) `webhookGonderBekle(olay, veri)` fonksiyonunu `await` ile çağırır. Gönderim başarısız olursa kullanıcıya ne olduğunu ve ne yapabileceğini söyleyen bir hata gösterilir; onay ekranı yalnızca başarılı gönderimden sonra çıkar.
+- **Arka plan olayları** (`uye.kaydoldu`, `sepet.guncellendi` gibi) `webhookGonder(olay, veri)` ile gönderilir. Kullanıcının işlemini beklemez, hata olursa yalnızca `console.warn` ile kayda geçer.
+- Adres `VITE_WEBHOOK_URL` değişkeninden okunur: yerelde `.env` dosyası (örnek: `.env.example`), yayında GitHub deposunun Actions değişkeni (`Settings → Secrets and variables → Actions → Variables`). Tanımlı değilse formlar hata gösterir, arka plan olayları gönderilmez.
+- Alıcı tarayıcıdan gelen istekleri kabul etmek için CORS başlıklarını göndermelidir (webhook.site'ta "CORS headers" seçeneği).
 
 **Güvenlik notu:** `VITE_` ile başlayan değişkenler tarayıcıya gönderilen koda gömülür, yani sayfayı açan herkes webhook adresini görebilir. Bu nedenle adres gizli bir anahtar içermemelidir. İmzalı ya da gizli anahtarla korunan webhook'lar sunucu tarafından gönderilmelidir.

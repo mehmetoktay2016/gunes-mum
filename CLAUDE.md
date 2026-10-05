@@ -21,12 +21,13 @@ Sıcak, samimi ve sakin. Abartılı satış dili kullanılmasın.
   `main`'e her push'ta `.github/workflows/deploy.yml` derleyip yayınlar. Build ve preview `/gunes-mum/` alt adresini
   kullanır (`vite.config.js`), dev sunucusu kökte çalışır. Kökten başlayan görsel yolları (`/gorseller/...`)
   ProductImage içinde `BASE_URL`'e göre çözülür.
-- Ürünler `src/urunler.js` içinde tutulur (alanlar: id, ad, aciklama, fiyat, gorsel). Kullanıcı izni olmadan bu veriyi değiştirme.
+- Ürünler `src/urunler.js` içinde tutulur (alanlar: id, ad, aciklama, fiyat, stok, gorsel; `stok: 0` = tükendi, şu an Güneş Hediye Seti). Kullanıcı izni olmadan bu veriyi değiştirme.
 - Bileşenler `src/components/` içinde: ProductList (katalog) → ProductCard (kart) → ProductImage (görsel; görsel yoksa 🕯️ gösterir).
-  Başlıkta UserMenu (üye alanı) ve CartSummary (sepet özeti) var. Katalogdan sonra ContactInfo (iletişim) gelir;
+  Başlıkta UserMenu (üye alanı) ve CartSummary (sepet özeti) var. Katalogdan sonra OrderForm ("Sipariş verin") ve ContactInfo (iletişim) gelir;
   içinde CatalogQR (`qrcode.react`, `atolye.js` içindeki `siteAdresi`'ni açan QR kod) var.
   LoginDialog (giriş) ve RegisterDialog (üye ol) ortak Modal kabuğunu (native `<dialog>`) kullanır.
   Hangi pencerenin açık olduğu App'te `pencere` state'inde: null | 'giris' | 'kayit'.
+  Tükenen üründe StockAlertDialog ("Gelince haber ver") açılır; açık olduğu ürün App'te `stokUrunu` state'inde.
   Başlıkta yalnızca "Giriş yap" butonu var; üye olma penceresi giriş penceresindeki "Üye olun" bağlantısıyla açılır
   (kullanıcı tercihi: başlıkta ayrı "Üye ol" butonu olmasın).
 - Atölye bilgileri `src/atolye.js` içinde: `siteAdresi`, `iletisim` (adres, telefon, e-posta, Instagram, çalışma saatleri)
@@ -40,8 +41,13 @@ Sıcak, samimi ve sakin. Abartılı satış dili kullanılmasın.
   - Giriş yapan üye localStorage `gunes-mum-uye` anahtarında `{ ad, eposta }` olarak tutulur.
   - Gerçek bir sitede kayıt ve giriş sunucu tarafında yapılmalı.
 - Sepet: `App.jsx` içinde `{ ürünId: adet }` olarak tutulur, localStorage'da `gunes-mum-sepet` anahtarıyla saklanır.
-  Toplam adet ve tutar `urunler` üzerinden hesaplanır (fiyat sepette tekrar tutulmaz).
-  ProductCard durumsuzdur: `adet`, `onEkle`, `onAzalt` prop'larını alır.
+  Toplam adet ve tutar satıştaki (stok > 0) ürünler üzerinden hesaplanır (fiyat sepette tekrar tutulmaz).
+  Tükenen ürün sepete eklenemez.
+  ProductCard durumsuzdur: `adet`, `onEkle`, `onAzalt`, `onStokBildirimi` prop'larını alır.
+- Formlar ve webhook: sipariş ve stok bildirimi mantığı `src/siparis.js`, gönderim `src/webhook.js`.
+  Olay biçimleri (`siparis.olusturuldu`, `stok.bildirim_istendi`) skill'deki `webhook.md` dosyasında.
+  Adres `VITE_WEBHOOK_URL`: yerelde `.env` (örnek `.env.example`), yayında repo Actions değişkeni.
+  Alıcı CORS başlıklarını göndermeli (webhook.site'ta "CORS headers" açık olmalı).
 - Ürün görselleri `public/gorseller/` klasöründe (lavanta.png, bal-petegi.png, hediye-seti.png). Fotoğraflar dikey (512×1024).
 - Stiller `src/App.css` içinde.
 - `index.static.html`: React'e geçmeden önceki düz HTML sürümü, sadece referans.
