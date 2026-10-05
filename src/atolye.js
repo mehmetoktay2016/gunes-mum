@@ -1,6 +1,9 @@
 // Atölye bilgileri. Tüm değerler uydurmadır (demo amaçlı).
 // E-postalar örnekler için ayrılmış example.com alan adını kullanır.
 
+// Sitenin yayın adresi (GitHub Pages). Katalogdaki QR kod bu adresi açar.
+export const siteAdresi = 'https://mehmetoktay2016.github.io/gunes-mum/'
+
 export const iletisim = {
   adres: 'Fitil Sokak No: 7, Moda, Kadıköy / İstanbul',
   telefon: '0216 555 01 47',

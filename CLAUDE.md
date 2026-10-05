@@ -17,14 +17,19 @@ Sıcak, samimi ve sakin. Abartılı satış dili kullanılmasın.
 
 ## Teknik
 - React + Vite projesi. Çalıştırma: `npm run dev`, derleme: `npm run build`.
+- Yayın: GitHub Pages, https://mehmetoktay2016.github.io/gunes-mum/ (repo: github.com/mehmetoktay2016/gunes-mum).
+  `main`'e her push'ta `.github/workflows/deploy.yml` derleyip yayınlar. Build ve preview `/gunes-mum/` alt adresini
+  kullanır (`vite.config.js`), dev sunucusu kökte çalışır. Kökten başlayan görsel yolları (`/gorseller/...`)
+  ProductImage içinde `BASE_URL`'e göre çözülür.
 - Ürünler `src/urunler.js` içinde tutulur (alanlar: id, ad, aciklama, fiyat, gorsel). Kullanıcı izni olmadan bu veriyi değiştirme.
 - Bileşenler `src/components/` içinde: ProductList (katalog) → ProductCard (kart) → ProductImage (görsel; görsel yoksa 🕯️ gösterir).
-  Başlıkta UserMenu (üye alanı) ve CartSummary (sepet özeti) var. Katalogdan sonra ContactInfo (iletişim) gelir.
+  Başlıkta UserMenu (üye alanı) ve CartSummary (sepet özeti) var. Katalogdan sonra ContactInfo (iletişim) gelir;
+  içinde CatalogQR (`qrcode.react`, `atolye.js` içindeki `siteAdresi`'ni açan QR kod) var.
   LoginDialog (giriş) ve RegisterDialog (üye ol) ortak Modal kabuğunu (native `<dialog>`) kullanır.
   Hangi pencerenin açık olduğu App'te `pencere` state'inde: null | 'giris' | 'kayit'.
   Başlıkta yalnızca "Giriş yap" butonu var; üye olma penceresi giriş penceresindeki "Üye olun" bağlantısıyla açılır
   (kullanıcı tercihi: başlıkta ayrı "Üye ol" butonu olmasın).
-- Atölye bilgileri `src/atolye.js` içinde: `iletisim` (adres, telefon, e-posta, Instagram, çalışma saatleri)
+- Atölye bilgileri `src/atolye.js` içinde: `siteAdresi`, `iletisim` (adres, telefon, e-posta, Instagram, çalışma saatleri)
   ve `demoUye`. Bu değerler uydurmadır; e-postalar `example.com` kullanır.
 - Üyelik DEMO (sunucu yok), mantığı `src/uyelik.js` içinde:
   - Kayıtlı üyeler localStorage `gunes-mum-uyeler` dizisinde: `{ ad, eposta, tuz, sifreOzeti }`.

@@ -5,7 +5,7 @@ import LoginDialog from './components/LoginDialog.jsx'
 import ProductList from './components/ProductList.jsx'
 import RegisterDialog from './components/RegisterDialog.jsx'
 import UserMenu from './components/UserMenu.jsx'
-import { demoUye, iletisim } from './atolye.js'
+import { demoUye, iletisim, siteAdresi } from './atolye.js'
 import urunler from './urunler.js'
 
 const SEPET_ANAHTARI = 'gunes-mum-sepet'
@@ -91,7 +91,7 @@ function App() {
           onEkle={sepeteEkle}
           onAzalt={sepettenAzalt}
         />
-        <ContactInfo iletisim={iletisim} />
+        <ContactInfo iletisim={iletisim} siteAdresi={siteAdresi} />
       </main>
 
       <footer>© 2026 Güneş Mum Atölyesi</footer>

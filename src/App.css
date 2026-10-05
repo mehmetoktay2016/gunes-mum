@@ -372,6 +372,39 @@ main {
   margin: 0;
 }
 
+/* Katalog QR kodu: okunabilirlik için açık zemin üzerinde koyu kod */
+
+.katalog-qr {
+  margin: 0;
+}
+
+.katalog-qr-kutu {
+  display: inline-block;
+  line-height: 0;
+  border-radius: 14px;
+  background: var(--balmumu);
+  color: var(--gece);
+  box-shadow: 0 0 40px -12px rgba(242, 165, 65, 0.35);
+}
+
+.katalog-qr figcaption {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--kul);
+}
+
+.katalog-qr a {
+  color: var(--balmumu);
+  text-decoration-color: var(--fitil);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.katalog-qr a:hover {
+  color: var(--alev);
+  text-decoration-color: var(--alev);
+}
+
 /* Giriş penceresi */
 
 .giris-pencere {

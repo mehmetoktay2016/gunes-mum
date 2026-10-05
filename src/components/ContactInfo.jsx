@@ -1,5 +1,7 @@
-// İletişim bölümü: adres, telefon, e-posta, Instagram ve çalışma saatleri.
-function ContactInfo({ iletisim }) {
+import CatalogQR from './CatalogQR.jsx'
+
+// İletişim bölümü: adres, telefon, e-posta, Instagram, çalışma saatleri ve katalog QR kodu.
+function ContactInfo({ iletisim, siteAdresi }) {
   const telefonLinki = 'tel:' + iletisim.telefon.replace(/\s/g, '')
 
   return (
@@ -25,6 +27,11 @@ function ContactInfo({ iletisim }) {
               </div>
             ))}
           </dl>
+        </div>
+
+        <div className="iletisim-blok">
+          <h3>Kataloğu telefonda açın</h3>
+          <CatalogQR adres={siteAdresi} />
         </div>
       </div>
     </section>
