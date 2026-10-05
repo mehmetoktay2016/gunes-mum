@@ -1,0 +1,16 @@
+# Bağımlılıklar ve derleme çıktısı (npm install / npm run build ile yeniden oluşur)
+node_modules/
+dist/
+
+# Ortam değişkenleri (ör. VITE_WEBHOOK_URL)
+.env
+.env.*
+
+# Kişisel Claude Code ayarları
+.claude/settings.local.json
+
+# Sistem ve editör dosyaları
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

@@ -1,0 +1,21 @@
+// Atölye bilgileri. Tüm değerler uydurmadır (demo amaçlı).
+// E-postalar örnekler için ayrılmış example.com alan adını kullanır.
+
+export const iletisim = {
+  adres: 'Fitil Sokak No: 7, Moda, Kadıköy / İstanbul',
+  telefon: '0216 555 01 47',
+  eposta: 'merhaba@gunesmum.example.com',
+  instagram: '@gunesmum.atolye',
+  calismaSaatleri: [
+    { gunler: 'Salı – Cumartesi', saat: '10:00 – 19:00' },
+    { gunler: 'Pazar', saat: '12:00 – 17:00' },
+    { gunler: 'Pazartesi', saat: 'Kapalı' },
+  ],
+}
+
+// Demo üye hesabı. Gerçek bir giriş sistemi yok; bilgiler tarayıcıda kontrol edilir.
+export const demoUye = {
+  ad: 'Derya Aksoy',
+  eposta: 'derya.aksoy@example.com',
+  sifre: 'Mum2026!',
+}
